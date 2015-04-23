@@ -1,0 +1,14 @@
+= simple_form_for @recipe, html: {multipart: true} do |f|
+  - if @recipe.errors.any?
+    #errors
+      %p
+        = pluralize(@recipe.errors.count, 'error')
+        prevented this recipe from saving
+      - @recipe.errors.each do |msg|
+        %ul
+          %li= msg
+  .panel-body
+    = f.input :title, input_html: {class: 'form_control'}
+    = f.input :description, input_html: {class: 'form_control'}
+
+  = f.button :submit, class: "btn btn-primary"
